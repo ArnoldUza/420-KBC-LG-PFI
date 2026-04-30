@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "la-bulle",
+    "scheme": "nav-blank",
     "slug": "la-bulle",
     "version": "1.0.0",
     "orientation": "portrait",
