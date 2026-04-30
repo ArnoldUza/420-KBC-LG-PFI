@@ -3,23 +3,26 @@ import { Ionicons } from '@expo/vector-icons';
 
 export default function TabsLayout() {
   return (
-    <Tabs>
+    <Tabs screenOptions={{ tabBarActiveTintColor: 'purple', tabBarInactiveTintColor: 'gray', headerShown: false }}>
       <Tabs.Screen
-        name="index"
+        name="produits"
         options={{
-          title: "Accueil",
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home" color={color} size={size} />
-          ),
+          title: 'Produits',
+          tabBarIcon: ({ color }) => <Ionicons name="book" size={28} color={color} />
         }}
       />
       <Tabs.Screen
-        name="profile"
+        name="panier"
         options={{
-          title: "Profil",
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="person" color={color} size={size} />
-          ),
+          title: 'Panier',
+          tabBarIcon: ({ color }) => <Ionicons name="cart" size={28} color={color} />
+        }}
+      />
+      <Tabs.Screen
+        name="compte"
+        options={{
+          title: 'Compte',
+          tabBarIcon: ({ color }) => <Ionicons name="person" size={28} color={color} />
         }}
       />
     </Tabs>
