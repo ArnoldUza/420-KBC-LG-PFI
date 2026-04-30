@@ -1,0 +1,51 @@
+[
+  {
+    "id": 1,
+    "nom": "One Piece Vol. 1",
+    "description": "Le premier tome de la série One Piece, créée par Eiichiro Oda.",
+    "prix": 12.99,
+    "image": "https://m.media-amazon.com/images/I/91NxYvUNf6L._SL1500_.jpg"
+  },
+  {
+    "id": 2,
+    "nom": "Batman: The Dark Knight Returns",
+    "description": "Le premier tome de la série Batman: The Dark Knight Returns, créée par Frank Miller.",
+    "prix": 19.99,
+    "image": "https://m.media-amazon.com/images/I/71TfU3GnfML._SL1500_.jpg"
+  },
+  {
+    "id": 3,
+    "nom": "Naruto Vol. 1",
+    "description": "Le premier tome de la série Naruto, créée par Masashi Kishimoto.",
+    "prix": 11.99,
+    "image": "https://m.media-amazon.com/images/I/91RpwagB7uL._SL1500_.jpg"
+  },
+  {
+    "id": 4,
+    "nom": "Spider-Man: Into the Spider-Verse",
+    "description": "Le premier tome de la série Spider-Man: Into the Spider-Verse, créée par Bob Persichetti.",
+    "prix": 16.99,
+    "image": "https://m.media-amazon.com/images/I/91UCSaRIgmL._SL1500_.jpg"
+  },
+  {
+    "id": 5,
+    "nom": "Astérix et Obélix: La Serpe d'Or",
+    "description": "Le premier tome de la série Astérix et Obélix: La Serpe d'Or, créée par René Goscinny et Albert Uderzo.",
+    "prix": 13.99,
+    "image": "https://m.media-amazon.com/images/I/810CD058+uL._SL1500_.jpg"
+  },
+  {
+    "id": 6,
+    "nom": "Dragon Ball Vol. 1",
+    "description": "Le premier tome de la série Dragon Ball, créée par Akira Toriyama.",
+    "prix": 11.99,
+    "image": "https://m.media-amazon.com/images/I/81-1jqVHePL._SL1500_.jpg"
+  },
+  {
+    "id": 7,
+    "nom": "X-Men: Days of Future Past",
+    "description": "Le premier tome de la série X-Men: Days of Future Past, créée par Frank Miller.",
+    "prix": 17.99,
+    "image": "https://m.media-amazon.com/images/I/A1d9ajwM3mL._SL1500_.jpg"
+  }     
+]

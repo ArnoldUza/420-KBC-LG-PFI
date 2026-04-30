@@ -1,8 +1,11 @@
 import {Text, View, TextInput, Pressable, StyleSheet, Image} from 'react-native';
-
+import { useRouter } from 'expo-router';
 
 export default function Home() {
+  const router = useRouter();
+
   return (
+    
     <View style={styles.container}>
       <View style={styles.top}>
         <Text style={styles.titre}>La Bulle</Text>
@@ -14,11 +17,13 @@ export default function Home() {
       </View>
 
       <View style={styles.forme}>
-        <TextInput style={styles.input} placeholder="Nom d'utilisateur"/>
+        <TextInput style={styles.input} placeholder="Nom d'utilisateur" />
         <TextInput style={styles.input} placeholder="Mot de passe" secureTextEntry={true}/>
         
-        <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>Se connecter</Text>
+        <Pressable style={styles.button} onPress={() => router.push('/(tabs)/produits')}>
+          <Text 
+            style={styles.buttonText}>Se connecter
+          </Text>
         </Pressable>
       </View>
 
