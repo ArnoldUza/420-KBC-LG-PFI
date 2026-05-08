@@ -1,7 +1,7 @@
 import { View, Text, Image, Pressable,StyleSheet } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 import produits from '../(tabs)/produits.json';
-    
+import { Stack } from 'expo-router';
 
 export default function Produit() {
   const { id } = useLocalSearchParams();
@@ -15,6 +15,7 @@ export default function Produit() {
     }       
     return (
         <View style={{ flex: 1, padding: 16 }}> 
+        <Stack.Screen options={{ title: "Page de détails" }} />
             <Image source={{ uri: produit.image }} style={{ width: 200, height: 200 }} />
             <Text style={{ fontSize: 24, fontWeight: 'bold' }}>{produit.nom}</Text>
             <Text style={{ fontSize: 18, color: '#888' }}>{produit.prix.toFixed(2)} $</Text>        
