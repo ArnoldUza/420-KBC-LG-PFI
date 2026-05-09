@@ -1,8 +1,24 @@
 import {Text, View, TextInput, Pressable, StyleSheet, Image} from 'react-native';
 import { useRouter } from 'expo-router';
+import { useState } from 'react';
 
 export default function Home() {
   const router = useRouter();
+  const [nomUtilisateur, setNomUtilisateur] = useState('');
+  const [motDePasse, setMotDePasse] = useState('');
+  const [erreur, setErreur] = useState('');
+
+  const handleConnexion = () => {
+    
+    if (nomUtilisateur === '' || motDePasse === '') {
+      setErreur('Veuillez remplir tous les champs');
+    } else if (nomUtilisateur === 'admin' && motDePasse === 'motdepasse') {
+      router.push('/(tabs)/produits');
+    } else {
+      setErreur('Nom d\'utilisateur ou mot de passe incorrect');
+    } 
+    
+  };
 
   return (
     
@@ -17,10 +33,10 @@ export default function Home() {
       </View>
 
       <View style={styles.forme}>
-        <TextInput style={styles.input} placeholder="Nom d'utilisateur" />
-        <TextInput style={styles.input} placeholder="Mot de passe" secureTextEntry={true}/>
-        
-        <Pressable style={styles.button} onPress={() => router.push('/(tabs)/produits')}>
+        <TextInput style={styles.input} placeholder="Nom d'utilisateur" onChangeText={setNomUtilisateur} />
+        <TextInput style={styles.input} placeholder="Mot de passe" secureTextEntry={true} onChangeText={setMotDePasse} />
+        {erreur !== '' && <Text style={styles.erreur}>{erreur}</Text>}
+        <Pressable style={styles.button} onPress={handleConnexion}>
           <Text 
             style={styles.buttonText}>Se connecter
           </Text>

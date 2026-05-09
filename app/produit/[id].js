@@ -2,9 +2,14 @@ import { View, Text, Image, Pressable,StyleSheet } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 import produits from '../(tabs)/produits.json';
 import { Stack } from 'expo-router';
+import { useContext, useState } from 'react';
+import { PanierContext } from '../../context/panierContext';
 
 export default function Produit() {
+  const { panier, setPanier } = useContext(PanierContext);
   const { id } = useLocalSearchParams();
+  const [ajoutReussi, setAjoutReussi] = useState('');
+
   const produit = produits.find(p => p.id === parseInt(id));    
     if (!produit) { 
         return (
@@ -21,11 +26,13 @@ export default function Produit() {
             <Text style={{ fontSize: 18, color: '#888' }}>{produit.prix.toFixed(2)} $</Text>        
             <Text style={{ marginTop: 16 }}>{produit.description}</Text>
 
-            <Pressable style={styles.button} >
-                <Text 
-                    style={styles.buttonText}>Ajouter au panier
-                </Text>
+            <Pressable style={styles.button} onPress={() => {
+                setPanier([...panier, produit]);
+                setAjoutReussi('Produit ajouté au panier');
+            }}>
+                <Text style={{ color: 'white', fontWeight: 'bold' }}>Ajouter au panier</Text>
             </Pressable>
+            {ajoutReussi && <Text style={{ color: 'green', marginTop: 10 }}>{ajoutReussi}</Text>}
         </View>
     );
 }
@@ -36,9 +43,5 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     marginTop: 16,
-  },
-  buttonText: {
-    color: 'white',
-    fontWeight: 'bold',
   },
 });
