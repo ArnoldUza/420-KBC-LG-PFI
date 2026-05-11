@@ -7,6 +7,7 @@ import { PanierContext } from '../../context/panierContext';
 
 export default function Produit() {
   const { panier, setPanier } = useContext(PanierContext);
+  const { ajouterAuPanier } = useContext(PanierContext);
   const { id } = useLocalSearchParams();
   const [ajoutReussi, setAjoutReussi] = useState('');
 
@@ -27,7 +28,7 @@ export default function Produit() {
             <Text style={{ marginTop: 16 }}>{produit.description}</Text>
 
             <Pressable style={styles.button} onPress={() => {
-                setPanier([...panier, produit]);
+                ajouterAuPanier(produit);
                 setAjoutReussi('Produit ajouté au panier');
             }}>
                 <Text style={{ color: 'white', fontWeight: 'bold' }}>Ajouter au panier</Text>
