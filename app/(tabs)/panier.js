@@ -47,6 +47,7 @@ export default function Panier() {
         <Pressable style={styles.button} onPress={() => setModalVisible(true)}>
             <Text style={styles.buttonText}>Passer à la caisse</Text>
         </Pressable>
+
         <Modal
             animationType="slide"
             transparent={true}
@@ -67,8 +68,7 @@ export default function Panier() {
                 </View>
             </View>
         </Modal>
-
-
+        
     </View>
   );
 }
