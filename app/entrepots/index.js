@@ -1,3 +1,5 @@
+// undo comment: ctrl + K then ctrl + U
+
 // import {
 //   View,
 //   Text,
@@ -5,19 +7,13 @@
 //   StyleSheet
 // } from 'react-native';
 
-// import MapView, {
-//   Marker,
-//   Circle,
-//   Polyline
-// } from 'react-native-maps';
-
-// import * as Location from 'expo-location';
+// import MapView, {Marker, Circle, Polyline} from 'react-native-maps';
 
 // import { useEffect, useState } from 'react';
 
-// import entrepots from '../../data/entrepots';
+// import entrepots from '../entrepots/entrepots';
 
-// import routeCoords from '../../data/route.json';
+// import routeCoords from '../entrepots/route';
 
 // export default function Entrepots() {
 
