@@ -105,7 +105,7 @@ export default function Admin() {
         onPress={handleAjouter}
       />
 
-      <Text>Liste de Produits disponible</Text>
+      <Text>Liste de Produits disponibles: </Text>
 
       <FlatList
         data={listeProduits}
