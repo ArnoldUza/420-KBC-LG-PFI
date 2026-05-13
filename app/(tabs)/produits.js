@@ -1,9 +1,20 @@
 import { View, Text, FlatList, Image, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
-import produits from './produits.json';
+import { useState, useEffect } from 'react';
+import { getProduits } from '../bdSQLite';
 
 export default function Produits() {
   const router = useRouter();
+  const [produits, setProduits] = useState([]);
+
+  useEffect(() => {
+    const fetchProduits = async () => {
+      const produitsData = await getProduits();
+      setProduits(produitsData);
+    };
+
+    fetchProduits();
+  }, []);
 
   return (
     <View style={{ flex: 1, padding: 16 }}>

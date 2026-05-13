@@ -2,15 +2,27 @@ import { View, Text, Image, Pressable,StyleSheet } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 import produits from '../(tabs)/produits.json';
 import { Stack } from 'expo-router';
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { PanierContext } from '../../context/panierContext';
+import { getProduits } from '../bdSQLite';
 
 export default function Produit() {
   const { panier, setPanier, ajouterAuPanier } = useContext(PanierContext);
   const { id } = useLocalSearchParams();
   const [ajoutReussi, setAjoutReussi] = useState('');
 
-  const produit = produits.find(p => p.id === parseInt(id));    
+  const [produit, setProduit] = useState(null);
+
+  useEffect(() => {
+    const fetchProduit = async () => {
+      const produitsData = await getProduits();
+      const foundProduit = produitsData.find(p => p.id === parseInt(id));
+      setProduit(foundProduit);
+    };
+
+    fetchProduit();
+  }, [id]);
+
     if (!produit) { 
         return (
             <View>

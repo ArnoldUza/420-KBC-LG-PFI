@@ -2,7 +2,7 @@ import {useSQLiteContext, SQLiteProvider} from "expo-sqlite";
 import * as SQLite from 'expo-sqlite';
 import produits from './(tabs)/produits.json';
 
-const dbPromise = SQLite.openDatabaseAsync('laBulle.db');
+const dbPromise = SQLite.openDatabaseAsync('laBulle2.db');
 
 export async function initDB() {
   const db = await dbPromise;

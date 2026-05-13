@@ -1,4 +1,4 @@
-import { Text, View, TextInput, Pressable, StyleSheet, Image } from 'react-native';
+import { Text, View, TextInput, Pressable, StyleSheet, Image, Platform, KeyboardAvoidingView } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { connecterCompte } from './bdSQLite';
@@ -48,7 +48,7 @@ export default function Home() {
 
   return (
 
-    <View style={styles.container}>
+    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.container}>
       <View style={styles.top}>
         <Text style={styles.titre}>La Bulle</Text>
         <Image
@@ -70,7 +70,7 @@ export default function Home() {
       </View>
 
       <Text style={styles.noms}>Arnold - Massine</Text>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'normal',
     color: '#888',
-    marginBottom: 20,
+    marginBottom: 90,
   },
   top: {
     marginTop: 80,

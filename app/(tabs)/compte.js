@@ -1,9 +1,11 @@
 import { View, Text, TextInput, StyleSheet, Pressable } from 'react-native';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { ajouterCompte } from '../bdSQLite';
 import { useRouter } from 'expo-router';
+import { PanierContext } from '../../context/panierContext';
 
 export default function Compte() {
+
   const router = useRouter();
 
   const [motDePasse, setMotDePasse] = useState('');
@@ -13,6 +15,9 @@ export default function Compte() {
   const [messageSucces, setMessageSucces] = useState('');
   const [adresse, setAdresse] = useState('');
   const [langue, setLangue] = useState('fr');
+
+  const { setPanier } = useContext(PanierContext);
+  
 
   return (
     <View style={{ flex: 1, padding: 16 }}>
@@ -105,6 +110,16 @@ export default function Compte() {
 
       {messageErreur !== '' && <Text style={styles.messageErreur}>{messageErreur}</Text>}
       {messageSucces !== '' && <Text style={styles.messageSucces}>{messageSucces}</Text>}
+
+
+      <Pressable style={styles.buttonDeconnexion} onPress={() => {
+        setPanier([]);
+        router.replace('/');
+      }}>
+        <Text
+          style={styles.buttonText}>Se déconnecter
+        </Text>
+      </Pressable>
     </View>
 
   );
@@ -152,5 +167,12 @@ const styles = StyleSheet.create({
   messageSucces: {
     color: 'green',
     marginTop: 10,
+  },
+  buttonDeconnexion: {
+    backgroundColor: '#FF3B30',
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginTop: 20,
   },
 });
