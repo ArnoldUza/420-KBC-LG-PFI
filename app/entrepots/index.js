@@ -1,3 +1,14 @@
+import { View, Text } from 'react-native';
+
+export default function Entrepots() {
+
+  return (
+    <View>
+      <Text>Page entrepôts</Text>
+    </View>
+  );
+}
+
 // undo comment: ctrl + K then ctrl + U
 
 // import {

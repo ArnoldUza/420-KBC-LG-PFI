@@ -95,7 +95,7 @@ export default function Compte() {
         style={styles.button}
         onPress={() => {
 
-          // router.push('/entrepots');
+          router.push('/entrepots');
         }}
       >
         <Text style={styles.buttonText}>
