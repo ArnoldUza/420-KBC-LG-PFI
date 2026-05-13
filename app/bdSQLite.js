@@ -157,3 +157,58 @@ export async function connecterCompte(
     [nom, mdp]
   );
 }
+export async function modifierNom(
+  id,
+  nom
+) {
+  const db = await dbPromise;
+
+  await db.runAsync(
+    `UPDATE clients
+     SET nom = ?
+     WHERE id = ?`,
+    [nom, id]
+  );
+}
+
+export async function modifierMdp(
+  id,
+  mdp
+) {
+  const db = await dbPromise;
+
+  await db.runAsync(
+    `UPDATE clients
+     SET mdp = ?
+     WHERE id = ?`,
+    [mdp, id]
+  );
+}
+
+export async function modifierAdresse(
+  id,
+  adresse
+) {
+  const db = await dbPromise;
+
+  await db.runAsync(
+    `UPDATE clients
+     SET adresse = ?
+     WHERE id = ?`,
+    [adresse, id]
+  );
+}
+
+export async function modifierLangue(
+  id,
+  langue
+) {
+  const db = await dbPromise;
+
+  await db.runAsync(
+    `UPDATE clients
+     SET langue = ?
+     WHERE id = ?`,
+    [langue, id]
+  );
+}
