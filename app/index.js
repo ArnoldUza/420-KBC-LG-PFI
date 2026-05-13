@@ -1,6 +1,7 @@
-import {Text, View, TextInput, Pressable, StyleSheet, Image} from 'react-native';
+import { Text, View, TextInput, Pressable, StyleSheet, Image } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
+import { connecterCompte } from './bdSQLite';
 
 export default function Home() {
   const router = useRouter();
@@ -8,25 +9,50 @@ export default function Home() {
   const [motDePasse, setMotDePasse] = useState('');
   const [erreur, setErreur] = useState('');
 
-  const handleConnexion = () => {
-    
+  // const handleConnexion = () => {
+
+  //   if (nomUtilisateur === '' || motDePasse === '') {
+  //     setErreur('Veuillez remplir tous les champs');
+  //   } else if (nomUtilisateur === 'admin' && motDePasse === 'motdepasse') {
+  //     router.push('/(tabs)/produits');
+  //   } else {
+  //     setErreur('Nom d\'utilisateur ou mot de passe incorrect');
+  //   }
+
+  // };
+  const handleConnexion = async () => {
+
     if (nomUtilisateur === '' || motDePasse === '') {
       setErreur('Veuillez remplir tous les champs');
-    } else if (nomUtilisateur === 'admin' && motDePasse === 'motdepasse') {
+      return;
+    }
+
+    const compte = await connecterCompte(nomUtilisateur, motDePasse);
+
+    if (!compte) {
+      setErreur("Nom d'utilisateur ou mot de passe incorrect");
+
+      return;
+    }
+    // ADMIN
+    if (compte.admin === 1) {
+
+      router.push('/administration');
+    }
+    // CLIENT NORMAL
+    else {
+
       router.push('/(tabs)/produits');
-    } else {
-      setErreur('Nom d\'utilisateur ou mot de passe incorrect');
-    } 
-    
+    }
   };
 
   return (
-    
+
     <View style={styles.container}>
       <View style={styles.top}>
         <Text style={styles.titre}>La Bulle</Text>
-        <Image 
-          source={require('../assets/Shonen-Jump-Marvel.webp')} 
+        <Image
+          source={require('../assets/Shonen-Jump-Marvel.webp')}
           style={styles.image}
         />
         <Text style={styles.soutitre}>Bandes Dessinées</Text>
@@ -37,7 +63,7 @@ export default function Home() {
         <TextInput style={styles.input} placeholder="Mot de passe" secureTextEntry={true} onChangeText={setMotDePasse} />
         {erreur !== '' && <Text style={styles.erreur}>{erreur}</Text>}
         <Pressable style={styles.button} onPress={handleConnexion}>
-          <Text 
+          <Text
             style={styles.buttonText}>Se connecter
           </Text>
         </Pressable>
@@ -50,9 +76,9 @@ export default function Home() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, 
-    justifyContent: 'space-between', 
-    padding: 24, 
+    flex: 1,
+    justifyContent: 'space-between',
+    padding: 24,
     backgroundColor: '#f7f4ef'
   },
   titre: {
@@ -83,9 +109,9 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   button: {
-    backgroundColor: '#9e8dd7', 
-    padding: 14, 
-    borderRadius: 10, 
+    backgroundColor: '#9e8dd7',
+    padding: 14,
+    borderRadius: 10,
     alignItems: 'center'
   },
   buttonText: {
@@ -94,18 +120,18 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   noms: {
-    textAlign: 'center', 
-    color: '#292727', 
-    fontSize: 12, 
+    textAlign: 'center',
+    color: '#292727',
+    fontSize: 12,
     marginBottom: 12
   },
   forme: {
     gap: 10,
   },
   image: {
-  width: 250,
-  height: 250,
-  marginTop: 20,
-  resizeMode: 'contain',
-}
+    width: 250,
+    height: 250,
+    marginTop: 20,
+    resizeMode: 'contain',
+  }
 });

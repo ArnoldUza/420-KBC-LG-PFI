@@ -1,11 +1,21 @@
-import { Stack } from 'expo-router'
-import { PanierProvider } from '../context/panierContext'   
+import { Stack } from 'expo-router';
+import { PanierProvider } from '../context/panierContext';
 
-export default function RootLayout ()
-{
- return (
+import { useEffect } from 'react';
+
+import { initDB } from './bdSQLite';
+
+export default function RootLayout() {
+
+  useEffect(() => {
+
+    initDB();
+
+  }, []);
+
+  return (
     <PanierProvider>
-        <Stack/>
+      <Stack />
     </PanierProvider>
- )
+  );
 }

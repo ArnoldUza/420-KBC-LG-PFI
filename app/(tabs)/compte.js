@@ -1,8 +1,12 @@
-import { View, Text, TextInput, StyleSheet, Pressable} from 'react-native';
+import { View, Text, TextInput, StyleSheet, Pressable } from 'react-native';
 import { useState } from 'react';
+import { ajouterCompte } from '../bdSQLite';
+import { useRouter } from 'expo-router';
 
 export default function Compte() {
-  const [motDePasse, setMotDePasse] = useState(''); 
+  const router = useRouter();
+
+  const [motDePasse, setMotDePasse] = useState('');
   const [nom, setNom] = useState('');
   const [email, setEmail] = useState('');
   const [messageErreur, setMessageErreur] = useState('');
@@ -11,44 +15,97 @@ export default function Compte() {
   const [langue, setLangue] = useState('fr');
 
   return (
-  <View style={{ flex: 1, padding: 16 }}>
+    <View style={{ flex: 1, padding: 16 }}>
       <Text style={styles.title}>Compte</Text>
       <TextInput style={styles.input} placeholder="Mot de passe" secureTextEntry={true} onChangeText={setMotDePasse} />
       <TextInput style={styles.input} placeholder="Nom" onChangeText={setNom} />
       <TextInput style={styles.input} placeholder="Email" onChangeText={setEmail} />
       <TextInput style={styles.input} placeholder="Adresse" onChangeText={setAdresse} />
 
-      <View  style={{ flexDirection: 'row', justifyContent: 'space-around', marginVertical: 16 }}>
-        <Pressable 
-        style={langue === 'fr' ? styles.boutonActif : styles.bouton}  
-        onPress={() => {setLangue('fr')}}>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginVertical: 16 }}>
+        <Pressable
+          style={langue === 'fr' ? styles.boutonActif : styles.bouton}
+          onPress={() => { setLangue('fr') }}>
           <Text style={styles.buttonText}>[Fr]</Text>
         </Pressable>
 
-        <Pressable 
-        style={langue === 'en' ? styles.boutonActif : styles.bouton}  
-        onPress={() => {setLangue('en')}}>
+        <Pressable
+          style={langue === 'en' ? styles.boutonActif : styles.bouton}
+          onPress={() => { setLangue('en') }}>
           <Text style={styles.buttonText}>[En]</Text>
         </Pressable>
 
-        <Pressable 
-        style={langue === 'auto' ? styles.boutonActif : styles.bouton}  
-        onPress={() => {setLangue('auto')}}>
+        <Pressable
+          style={langue === 'auto' ? styles.boutonActif : styles.bouton}
+          onPress={() => { setLangue('auto') }}>
           <Text style={styles.buttonText}>[Auto]</Text>
         </Pressable>
       </View>
 
-      <Pressable style={styles.button} onPress={() => {
+      {/* <Pressable style={styles.button} onPress={() => {
         if (motDePasse === '' || nom === '' || email === '' || adresse === '') {
           setMessageErreur('Veuillez remplir tous les champs');
         }
-      }}>
+      }}> */}
+      <Pressable
+        style={styles.button}
+        onPress={async () => {
+
+          if (
+            motDePasse === '' ||
+            nom === '' ||
+            adresse === ''
+          ) {
+
+            setMessageErreur(
+              'Veuillez remplir tous les champs'
+            );
+
+            return;
+          }
+
+          try {
+
+            await ajouterCompte(
+              nom,
+              motDePasse,
+              0, // non-admin
+              adresse,
+              langue
+            );
+
+            setMessageSucces(
+              'Compte créé avec succès'
+            );
+
+            setMessageErreur('');
+
+          } catch (e) {
+
+            setMessageErreur(
+              'Ce compte existe déjà'
+            );
+          }
+        }}
+      >
         <Text style={styles.buttonText}>Enregistrer</Text>
+      </Pressable>
+
+      <Pressable
+        style={styles.button}
+        onPress={() => {
+
+          // router.push('/entrepots');
+        }}
+      >
+        <Text style={styles.buttonText}>
+          Vers entrepots...
+        </Text>
       </Pressable>
 
       {messageErreur !== '' && <Text style={styles.messageErreur}>{messageErreur}</Text>}
       {messageSucces !== '' && <Text style={styles.messageSucces}>{messageSucces}</Text>}
-  </View>
+    </View>
 
   );
 
@@ -74,20 +131,20 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: 'white',
-    fontWeight: 'bold', 
+    fontWeight: 'bold',
   },
   bouton: {
-    backgroundColor: '#ccc',    
+    backgroundColor: '#ccc',
     padding: 10,
     borderRadius: 5,
     alignItems: 'center',
   },
   boutonActif: {
-    backgroundColor: '#007AFF', 
-    padding: 10,  
+    backgroundColor: '#007AFF',
+    padding: 10,
     borderRadius: 5,
     alignItems: 'center',
-  },  
+  },
   messageErreur: {
     color: 'red',
     marginTop: 10,
