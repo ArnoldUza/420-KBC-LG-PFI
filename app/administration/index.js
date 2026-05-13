@@ -6,10 +6,12 @@ import {
   TextInput,
   Button,
   FlatList,
-  Image
+  Image,
+  Pressable
 } from 'react-native';
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'expo-router';
 
 import {
   initDB,
@@ -19,6 +21,8 @@ import {
 } from '../bdSQLite';
 
 export default function Admin() {
+
+  const router = useRouter();
 
   const [listeProduits, setListeProduits] = useState([]);
 
@@ -72,7 +76,7 @@ export default function Admin() {
   }
 
   return (
-    
+
     <View style={{ flex: 1, padding: 16 }}>
 
       <Text>Ajouter un produit en tant qu'Admin</Text>
@@ -114,19 +118,11 @@ export default function Admin() {
         renderItem={({ item }) => (
 
           <View style={{ marginTop: 20 }}>
-
-            <Image
-              source={{ uri: item.image }}
-              style={{
-                width: 100,
-                height: 100
-              }}
-            />
-
-            <Text>{item.nom}</Text>
-
-            <Text>{item.prix} $</Text>
-
+            <Pressable onPress={() => router.push(`/produit/${item.id}`)}>
+              <Image source={{ uri: item.image }} style={{ width: 100, height: 100 }} />
+              <Text>{item.nom}</Text>
+              <Text>{item.prix.toFixed(2)} $</Text>
+            </Pressable>
             <Button
               title="Supprimer"
               onPress={() =>
