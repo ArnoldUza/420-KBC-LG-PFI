@@ -6,8 +6,7 @@ import { useContext, useState } from 'react';
 import { PanierContext } from '../../context/panierContext';
 
 export default function Produit() {
-  const { panier, setPanier } = useContext(PanierContext);
-  const { ajouterAuPanier } = useContext(PanierContext);
+  const { panier, setPanier, ajouterAuPanier } = useContext(PanierContext);
   const { id } = useLocalSearchParams();
   const [ajoutReussi, setAjoutReussi] = useState('');
 
