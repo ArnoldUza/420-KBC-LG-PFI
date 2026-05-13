@@ -6,16 +6,31 @@ import { useEffect } from 'react';
 import { initDB } from './bdSQLite';
 
 export default function RootLayout() {
+    useEffect(() => {
 
-  useEffect(() => {
+        async function setup() {
 
-    initDB();
+            try {
 
-  }, []);
+                await initDB();
 
-  return (
-    <PanierProvider>
-      <Stack />
-    </PanierProvider>
-  );
+                console.log("DB détectée");
+
+            } catch (e) {
+
+                console.log("ERREUR DB");
+
+                console.log(e);
+            }
+        }
+
+        setup();
+
+    }, []);
+
+    return (
+        <PanierProvider>
+            <Stack />
+        </PanierProvider>
+    );
 }
