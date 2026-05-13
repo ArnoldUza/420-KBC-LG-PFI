@@ -74,7 +74,7 @@ export default function Admin() {
   return (
     <View style={{ flex: 1, padding: 16 }}>
 
-      <Text>Admin</Text>
+      <Text>Ajouter un produit en tant qu'Admin</Text>
 
       <TextInput
         placeholder="Nom"
@@ -104,6 +104,8 @@ export default function Admin() {
         title="Ajouter"
         onPress={handleAjouter}
       />
+
+      <Text>Liste de Produits disponible</Text>
 
       <FlatList
         data={listeProduits}
