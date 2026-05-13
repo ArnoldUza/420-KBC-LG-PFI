@@ -72,6 +72,7 @@ export default function Admin() {
   }
 
   return (
+    
     <View style={{ flex: 1, padding: 16 }}>
 
       <Text>Ajouter un produit en tant qu'Admin</Text>
