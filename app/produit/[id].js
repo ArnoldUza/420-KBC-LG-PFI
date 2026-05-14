@@ -33,6 +33,8 @@ export default function Produit() {
       </View>
     );
   }
+
+  
   return (
     <View style={{ flex: 1, padding: 16 }}>
       <Stack.Screen options={{ title: "Page de détails" }} />
