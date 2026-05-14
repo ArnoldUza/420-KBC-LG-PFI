@@ -44,21 +44,21 @@ export default function Produit() {
       <Text style={{ marginTop: 16 }}>{produit.description}</Text>
 
       {
-          compte?.admin === 0 && (
-            <Pressable
-              style={styles.button}
-              onPress={() => {
-                ajouterAuPanier(produit);
+        compte?.admin === 0 && (
+          <Pressable
+            style={styles.button}
+            onPress={() => {
+              ajouterAuPanier(produit);
 
-                setAjoutReussi(
-                  'Produit ajouté au panier'
-                );
-              }}
-            >
-              <Text style={{ color: 'white', fontWeight: 'bold' }}>Ajouter au panier</Text>
-            </Pressable>
-          )
-        }
+              setAjoutReussi(
+                'Produit ajouté au panier'
+              );
+            }}
+          >
+            <Text style={{ color: 'white', fontWeight: 'bold' }}>Ajouter au panier</Text>
+          </Pressable>
+        )
+      }
       {ajoutReussi && <Text style={{ color: 'green', marginTop: 10 }}>{ajoutReussi}</Text>}
     </View>
   );
