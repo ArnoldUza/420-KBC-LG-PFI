@@ -1,5 +1,6 @@
 import { Stack } from 'expo-router';
 import { PanierProvider } from '../context/panierContext';
+import { CompteProvider } from '../context/compteContext';
 
 import { useEffect } from 'react';
 
@@ -29,8 +30,14 @@ export default function RootLayout() {
     }, []);
 
     return (
-        <PanierProvider>
-            <Stack />
-        </PanierProvider>
+        <CompteProvider>
+
+            <PanierProvider>
+
+                <Stack />
+
+            </PanierProvider>
+
+        </CompteProvider>
     );
 }
