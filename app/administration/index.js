@@ -121,7 +121,7 @@ export default function Admin() {
             <Pressable onPress={() => router.push(`/produit/${item.id}`)}>
               <Image source={{ uri: item.image }} style={{ width: 100, height: 100 }} />
               <Text>{item.nom}</Text>
-              <Text>{item.prix.toFixed(2)} $</Text>
+              <Text>{(item.prix ?? 0).toFixed(2)} $</Text>
             </Pressable>
             <Button
               title="Supprimer"
