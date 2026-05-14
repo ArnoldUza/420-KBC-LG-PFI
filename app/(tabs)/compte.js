@@ -3,7 +3,6 @@ import { useState, useContext } from 'react';
 import { ajouterCompte } from '../bdSQLite';
 import { useRouter } from 'expo-router';
 import { PanierContext } from '../../context/panierContext';
-import { LangueContext } from '../../context/langueContext';
 
 export default function Compte() {
 
@@ -15,10 +14,9 @@ export default function Compte() {
   const [messageErreur, setMessageErreur] = useState('');
   const [messageSucces, setMessageSucces] = useState('');
   const [adresse, setAdresse] = useState('');
-
+  const [langue, setLangue] = useState('fr');
 
   const { setPanier } = useContext(PanierContext);
-  const { langue, setLangue } = useContext(LangueContext);
   
 
   return (

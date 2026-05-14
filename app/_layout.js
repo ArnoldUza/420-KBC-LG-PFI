@@ -1,10 +1,10 @@
 import { Stack } from 'expo-router';
 import { PanierProvider } from '../context/panierContext';
+import { CompteProvider } from '../context/compteContext';
 
 import { useEffect } from 'react';
 
 import { initDB } from './bdSQLite';
-import { LangueProvider } from '../context/langueContext';
 
 export default function RootLayout() {
     useEffect(() => {
@@ -30,12 +30,14 @@ export default function RootLayout() {
     }, []);
 
     return (
-        <PanierProvider>
-            <LangueProvider>
-                <Stack />
-            </LangueProvider>
-        </PanierProvider>
+        <CompteProvider>
 
-   
+            <PanierProvider>
+
+                <Stack />
+
+            </PanierProvider>
+
+        </CompteProvider>
     );
 }
