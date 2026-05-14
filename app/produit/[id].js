@@ -5,13 +5,21 @@ import { Stack } from 'expo-router';
 import { useContext, useState, useEffect } from 'react';
 import { PanierContext } from '../../context/panierContext';
 import { getProduits } from '../bdSQLite';
+import { LangueContext } from '../../context/langueContext';
 
 export default function Produit() {
   const { panier, setPanier, ajouterAuPanier } = useContext(PanierContext);
   const { id } = useLocalSearchParams();
   const [ajoutReussi, setAjoutReussi] = useState('');
 
+  const { langue, setLangue } = useContext(LangueContext);
+
   const [produit, setProduit] = useState(null);
+
+  const formaterPrix = (prix) => {
+    if (langue === 'en') return `$ ${prix.toFixed(2)}`;
+    return `${prix.toFixed(2)} $`;
+  };
 
   useEffect(() => {
     const fetchProduit = async () => {
@@ -35,7 +43,7 @@ export default function Produit() {
         <Stack.Screen options={{ title: "Page de détails" }} />
             <Image source={{ uri: produit.image }} style={{ width: 200, height: 200 }} />
             <Text style={{ fontSize: 24, fontWeight: 'bold' }}>{produit.nom}</Text>
-            <Text style={{ fontSize: 18, color: '#888' }}>{produit.prix.toFixed(2)} $</Text>        
+            <Text style={{ fontSize: 18, color: '#888' }}>{formaterPrix(produit.prix)}</Text>        
             <Text style={{ marginTop: 16 }}>{produit.description}</Text>
 
             <Pressable style={styles.button} onPress={() => {
