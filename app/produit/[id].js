@@ -40,7 +40,7 @@ export default function Produit() {
       <Stack.Screen options={{ title: "Page de détails" }} />
       <Image source={{ uri: produit.image }} style={{ width: 200, height: 200 }} />
       <Text style={{ fontSize: 24, fontWeight: 'bold' }}>{produit.nom}</Text>
-      <Text style={{ fontSize: 18, color: '#888' }}>{produit.prix.toFixed(2)} $</Text>
+      <Text style={{ fontSize: 18, color: '#888' }}>{(produit.prix ?? 0).toFixed(2)} $</Text>
       <Text style={{ marginTop: 16 }}>{produit.description}</Text>
 
       {

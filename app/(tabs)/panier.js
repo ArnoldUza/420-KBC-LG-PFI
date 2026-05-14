@@ -27,7 +27,7 @@ export default function Panier() {
                     <Image source={{ uri: item.image }} style={{ width: 100, height: 100 }} />
                     <Text>{item.nom}</Text>
                     <Text>Quantité: {item.quantite}</Text>
-                    <Text>{item.prix.toFixed(2)} $</Text>
+                    <Text>{(item.prix ?? 0).toFixed(2)} $</Text>
                     <Text>Total: {(item.prix * item.quantite).toFixed(2)} $</Text>
                 </View>
             )}
