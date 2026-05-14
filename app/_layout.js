@@ -4,7 +4,6 @@ import { PanierProvider } from '../context/panierContext';
 import { useEffect } from 'react';
 
 import { initDB } from './bdSQLite';
-import { LangueProvider } from '../context/langueContext';
 
 export default function RootLayout() {
     useEffect(() => {
@@ -31,11 +30,7 @@ export default function RootLayout() {
 
     return (
         <PanierProvider>
-            <LangueProvider>
-                <Stack />
-            </LangueProvider>
+            <Stack />
         </PanierProvider>
-
-   
     );
 }

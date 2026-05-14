@@ -2,7 +2,6 @@ import { View, Text, FlatList, Image, Pressable, StyleSheet } from 'react-native
 import { useContext, useState } from 'react';
 import { PanierContext } from '../../context/panierContext';
 import { Modal } from 'react-native';
-import { LangueContext } from '../../context/langueContext';
 
 export default function Panier() {
   const { panier, setPanier } = useContext(PanierContext);
@@ -10,16 +9,9 @@ export default function Panier() {
   const [soustraitReussi, setSoustraitReussi] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
 
-  const { langue, setLangue } = useContext(LangueContext);
-
   const viderPanier = () => {
     setPanier([]);
     setSoustraitReussi('Panier vidé avec succès');
-  };
-
-  const formaterPrix = (prix) => {
-    if (langue === 'en') return `$ ${prix.toFixed(2)}`;
-    return `${prix.toFixed(2)} $`;
   };
 
   return (
@@ -35,14 +27,14 @@ export default function Panier() {
                     <Image source={{ uri: item.image }} style={{ width: 100, height: 100 }} />
                     <Text>{item.nom}</Text>
                     <Text>Quantité: {item.quantite}</Text>
-                    <Text>{formaterPrix(item.prix)}</Text>
-                    <Text>Total: {formaterPrix(item.prix * item.quantite)}</Text>
+                    <Text>{item.prix.toFixed(2)} $</Text>
+                    <Text>Total: {(item.prix * item.quantite).toFixed(2)} $</Text>
                 </View>
             )}
         />
 
         <Text style={styles.total}>
-            Total: {formaterPrix(panier.reduce((total, item) => total + (item.prix * item.quantite), 0))}
+            Total: {panier.reduce((total, item) => total + (item.prix * item.quantite), 0).toFixed(2)} $
         </Text>
 
         <Pressable style={styles.button} onPress={() => {
